@@ -43,6 +43,15 @@ app.get("/register", (req, res) => {
 app.post("/register", async (req, res) => {
     try {
         const { username, password } = req.body;
+
+        if (!username || !password) {
+            return res.send("<script>alert('Username and password cannot be empty.'); window.history.back();</script>");
+        }
+    
+        if (password.length < 8) {
+            return res.send("<script>alert('Password must be at least 8 characters long.'); window.history.back();</script>");
+        }
+        
         const existingUser = await User.findOne({ username: username });
         if (existingUser) {
             console.log("User already is in database");
@@ -85,6 +94,28 @@ app.post("/login", async function(req, res){
 	}
 });
 
+app.put('/api/users/:id', async (req, res) => {
+    const { id } = req.params;
+    const { username, password } = req.body;
+
+    try {
+        const updatedUser = await User.findByIdAndUpdate(
+            id, 
+            { username, password }, // Ensure password is hashed if necessary
+            { new: true }
+        );
+
+        if (!updatedUser) {
+            return res.status(404).json({ message: "User not found" });
+        }
+
+        res.status(200).json({ message: "User updated successfully", user: updatedUser });
+    } catch (error) {
+        console.error('Error updating user:', error);
+        res.status(500).json({ message: 'Internal Server Error', error: error.message });
+    }
+});
+
 // Страница для зарегестрированного пользователя
 app.get("/logged", isLogged, (req, res) => {
     res.render("logged");
@@ -109,6 +140,10 @@ app.get('/api/users', async (req, res) => {
 app.post('/api/users', async (req, res) => {
     try {
         let { username, password } = req.body;
+
+        if (!username || !password) {
+            return res.status(400).json({ message: "Username and password are required" });
+        }
 
         const existingUser = await User.findOne({ username: username });
         if (existingUser) {

@@ -6,8 +6,8 @@
         <tr>
             <th>Name</th>
             <th>Password</th>
-            <th>Email</th>
-            <th>Action</th>
+            <th>Delete User</th>
+            <th>Edit User</th>
         </tr>
         </thead>
         <tbody>
@@ -20,6 +20,13 @@
         <input type="password" id="new-password" placeholder="Password" required>
         <button type="submit">Add User</button>
     </form>
+
+    <form id="edit-user-form" style="display: none;">
+        <input type="text" id="edit-username" placeholder="New Username" required>
+        <input type="password" id="edit-password" placeholder="New Password" required>
+        <button type="submit">Edit User</button>
+    </form>
+
     <button id="refresh">refresh</button>
 
     <script src="/javascripts/admin.js"></script>

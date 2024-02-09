@@ -9,18 +9,51 @@ function fetchUsersAndDisplay() {
         .then(users => {
             const table = document.getElementById('editable');
             const tableBody = table.querySelector('tbody') || table.appendChild(document.createElement('tbody'));
-            tableBody.innerHTML = ''; // Clear only the body of the table
+            tableBody.innerHTML = ''; 
             users.forEach(user => {
                 const row = tableBody.insertRow();
                 const usernameCell = row.insertCell(0);
                 const passwordCell = row.insertCell(1);
-                // Don't try to display the password as it's not returned from the server
                 usernameCell.textContent = user.username;
                 passwordCell.textContent = user.password
             });
         })
         .catch(error => console.error('Error fetching users:', error));
 }
+
+function fetchUsersAndDisplay() {
+    fetch('/api/users')
+        .then(response => response.json())
+        .then(users => {
+            const tableBody = document.querySelector('#editable tbody');
+            tableBody.innerHTML = '';
+            users.forEach(user => {
+                const row = tableBody.insertRow();
+                const usernameCell = row.insertCell(0);
+                const passwordCell = row.insertCell(1);
+                usernameCell.textContent = user.username;
+                passwordCell.textContent = user.password;
+                
+                const deleteButton = document.createElement('button');
+                deleteButton.textContent = 'Delete';
+                deleteButton.setAttribute('data-username', user.username);
+                deleteButton.addEventListener('click', function() {
+                    deleteUser(user.username);
+                });
+
+                const deleteCell = row.insertCell(2);
+                deleteCell.appendChild(deleteButton);
+
+                const editCell = row.insertCell(3);
+                const editButton = document.createElement('button');
+                editButton.textContent = 'Edit';
+                editButton.addEventListener('click', () => editUser(user._id, user.username));
+                editCell.appendChild(editButton);
+            });
+        })
+        .catch(error => console.error('Error fetching users:', error));
+}
+
 
 function addUser(event) {
     event.preventDefault();
@@ -47,10 +80,6 @@ function addUser(event) {
     window.location.reload();
 }
 
-function updatePage() {
-    window.location.reload();
-}
-
 function addUserToTable(user) {
     const table = document.getElementById('editable');
     const row = table.insertRow();
@@ -61,3 +90,49 @@ function addUserToTable(user) {
     passwordCell.textContent = user.password;
 }
 
+
+function deleteUser(username) {
+    fetch(`/api/users/${username}`, {
+        method: 'DELETE',
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok.');
+        }
+        fetchUsersAndDisplay(); // Refresh the list after deletion
+    })
+    .catch(error => {
+        console.error('Error deleting user:', error);
+    });
+}
+
+function editUser(userId, currentUsername) {
+    document.getElementById('edit-username').value = currentUsername;
+    document.getElementById('edit-password').value = '';
+    document.getElementById('edit-user-form').style.display = 'block';
+
+    document.getElementById('edit-user-form').onsubmit = (event) => {
+        event.preventDefault();
+        const newUsername = document.getElementById('edit-username').value.trim();
+        const newPassword = document.getElementById('edit-password').value.trim();
+
+        if (!newUsername) {
+            console.error('Username cannot be empty');
+            return;
+        }
+
+        fetch(`/api/users/${userId}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username: newUsername, password: newPassword })
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok.');
+            }
+            fetchUsersAndDisplay();
+            document.getElementById('edit-user-form').style.display = 'none';
+        })
+        .catch(error => console.error('Error updating user:', error));
+    };
+}
