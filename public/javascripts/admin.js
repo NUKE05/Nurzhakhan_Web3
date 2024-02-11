@@ -60,7 +60,17 @@ function addUser(event) {
     
     const username = document.getElementById('new-username').value;
     const password = document.getElementById('new-password').value;
-    
+
+    if (!username) {
+        alert('Username cannot be empty.');
+        return;
+    }
+
+    if (password.length < 8) {
+        alert('Password must be at least 8 characters long.');
+        return;
+    }
+
     fetch('/api/users', {
         method: 'POST',
         headers: {
@@ -68,16 +78,19 @@ function addUser(event) {
         },
         body: JSON.stringify({ username, password })
     })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok.');
+    .then(response => response.json())
+    .then(data => {
+        if (data.message === "User already exists") {
+            alert('User already is in database');
+        } else {
+            window.location.reload();
         }
     })
     .catch(error => {
         console.error('Error adding user:', error);
     });
 
-    window.location.reload();
+    // window.location.reload();
 }
 
 function addUserToTable(user) {
@@ -99,7 +112,7 @@ function deleteUser(username) {
         if (!response.ok) {
             throw new Error('Network response was not ok.');
         }
-        fetchUsersAndDisplay(); // Refresh the list after deletion
+        fetchUsersAndDisplay(); 
     })
     .catch(error => {
         console.error('Error deleting user:', error);
@@ -115,6 +128,11 @@ function editUser(userId, currentUsername) {
         event.preventDefault();
         const newUsername = document.getElementById('edit-username').value.trim();
         const newPassword = document.getElementById('edit-password').value.trim();
+
+        if (newPassword && newPassword.length < 8) {
+            alert('Password must be at least 8 characters long.');
+            return;
+        }
 
         if (!newUsername) {
             console.error('Username cannot be empty');

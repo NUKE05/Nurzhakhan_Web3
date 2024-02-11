@@ -41,21 +41,20 @@ app.get("/register", (req, res) => {
 
 // Обработка регистрации
 app.post("/register", async (req, res) => {
-    try {
-        const { username, password } = req.body;
+        try {
+            const { username, password } = req.body;
 
-        if (!username || !password) {
+            if (!username || !password) {
             return res.send("<script>alert('Username and password cannot be empty.'); window.history.back();</script>");
         }
-    
+
         if (password.length < 8) {
             return res.send("<script>alert('Password must be at least 8 characters long.'); window.history.back();</script>");
         }
-        
         const existingUser = await User.findOne({ username: username });
         if (existingUser) {
             console.log("User already is in database");
-            return res.status(400).json({ message: "User already exists" });
+            return res.send("<script>alert('User already is in database'); window.history.back();</script>");
         }
 
         const newUser = await User.create({ username, password });
@@ -68,7 +67,7 @@ app.post("/register", async (req, res) => {
 
 // Страница логина
 app.get("/login", (req, res) => {
-    res.render("login");
+    res.render("login", { errorMessage: "" });
 });
 
 // Обработка Логина
@@ -77,17 +76,14 @@ app.post("/login", async function(req, res){
 		const user = await User.findOne({ username: req.body.username });
 		if (user) {
 		const result = req.body.password === user.password;
-	    if (result && user.isAdmin) {
-            res.render("admin")
-        }
-        else if (result) {
-			res.render("logged");
-		} 
-        else {
-			res.status(400).json({ error: "password doesn't match" });
-		}
+            if (result && user.isAdmin) {
+                res.render("admin")
+            }
+            else {
+                res.render("logged");
+            }
 		} else {
-		res.status(400).json({ error: "User doesn't exist" });
+		res.render("login", { errorMessage: "Please check the username and password fields, because there is no such username in a database" });
 		}
 	} catch (error) {
 		res.status(400).json({ error });
