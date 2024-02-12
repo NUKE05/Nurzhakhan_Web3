@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search History</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container mt-5">
+    <h1 class="text-center mb-4">Search History</h1>
+    <% if (searchHistory.length > 0) { %>
+      <ul class="list-group">
+        <% searchHistory.forEach(function(country) { %>
+          <li class="list-group-item"><%= country %></li>
+        <% }); %>
+      </ul>
+    <% } else { %>
+      <p>No search history found.</p>
+    <% } %>
+  </div>
+</body>
+</html>

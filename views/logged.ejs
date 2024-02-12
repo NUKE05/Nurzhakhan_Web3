@@ -1,1 +1,87 @@
-<h1>You are logged in!</h1>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather Forecast</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"></link>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/styles/logged.css">
+</head>
+
+<body id="module1" class="bg-gray-200 flex items-center justify-center h-screens">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/">
+        <img src="/img/DALL·E 2024-01-20 03.28.00 - A single logo with a serious tone, featuring a medium level of detail and complexity, using a color palette of blue and gray. The design should be sui.png" width="30" height="30" class="d-inline-block align-top" alt="">
+        Daily
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="/logged">Weather</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/country">Countries</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/news">News</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/profile"><span class="text-info">Profile</span></a>
+            </li>
+        </ul>
+    </div>
+  </nav>
+
+  <div class="py-3"></div>
+  <img src="/img/DALL·E 2024-01-20 03.28.00 - A single logo with a serious tone, featuring a medium level of detail and complexity, using a color palette of blue and gray. The design should be sui.png" width="100px" class="img-thumbnail rounded mx-auto d-block">
+  <div class="row d-flex justify-content-center align-items-center h-100">
+    <div class="py-3 col-4 justify-content-center">
+        <h3 class="pb-3 fw-normal text-center">Check the weather forecast</h3>
+    
+        <div class="input-group">
+          <input id="cityInput" type="search" class="form-control rounded" placeholder="City" aria-label="Search"
+            aria-describedby="search-addon" />
+          <button id="getWeatherInfo" class="btn btn-sm btn-outline-primary">Show forecast</button>
+        </div>
+    </div>
+  </div>
+
+  <div id="module-2" class="container ps-5 py-2">
+    <div class="row d-flex justify-content-center align-items-center">
+      <div class="col-4 ps-5">
+        <div id="main-container" class="card shadow shadow-lg shadow-warning border">
+          <div class="card-body p-4">
+
+            <h4 id="countray-city" class="mb-1 sfw-normal"></h4>
+            <img id="weatherIcon">
+            <div class="mb-2" id="current_temp"></div>
+            <p class="mb-2 text-muted" id="weather_desc"></p>
+            <p class="mb-2" id="feels_like"></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-4">
+        <div id="map" class="py-3" style="width: 338px; height: 338px;"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="my-5"></div>
+  <div class="my-5"></div>
+  <div class="my-5"></div>
+
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.7.0/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="/javascripts/logged.js"></script>
+</body>
+</html>

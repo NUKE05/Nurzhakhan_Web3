@@ -1,31 +1,89 @@
-<h1>User Management</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Management</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/styles/admin.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/">
+            <img src="/img/DALL·E 2024-01-20 03.28.00 - A single logo with a serious tone, featuring a medium level of detail and complexity, using a color palette of blue and gray. The design should be sui.png" width="30" height="30" class="d-inline-block align-top" alt="">
+            Daily
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/logged">Weather</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/country">Countries</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/news">News</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/profile"><span class="text-info">Profile</span></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    
 
-    <table id="editable" class="table table-hover rounded">
-        <thead>
-        <tr>
-            <th>Name</th>
-            <th>Password</th>
-            <th>Delete User</th>
-            <th>Edit User</th>
-        </tr>
-        </thead>
-        <tbody>
+    <div class="container">
+        <h1>User Management</h1>
 
-        </tbody>
-    </table>
+        <table id="editable" class="table table-hover rounded">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Password</th>
+                    <th>IsAdmin</th>
+                    <th>Delete User</th>
+                    <th>Edit User</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
 
-    <form id="add-user-form">
-        <input type="text" id="new-username" placeholder="Username" required>
-        <input type="password" id="new-password" placeholder="Password" required>
-        <button type="submit">Add User</button>
-    </form>
+        <form id="add-user-form" class="mb-3">
+            <div class="form-row align-items-end">
+                <div class="col">
+                    <input type="text" id="new-username" class="form-control" placeholder="Username" required>
+                </div>
+                <div class="col">
+                    <input type="password" id="new-password" class="form-control" placeholder="Password" required>
+                </div>
+                <div class="col">
+                    <button type="submit" class="btn btn-primary btn-block">Add User</button>
+                </div>
+            </div>
+        </form>
 
-    <form id="edit-user-form" style="display: none;">
-        <input type="text" id="edit-username" placeholder="New Username" required>
-        <input type="password" id="edit-password" placeholder="New Password" required>
-        <button type="submit">Edit User</button>
-    </form>
-
-    <button id="refresh">refresh</button>
-
+        <form id="edit-user-form" class="mb-3" style="display: none;">
+            <div class="form-row align-items-end">
+                <div class="col">
+                    <input type="text" id="edit-username" class="form-control" placeholder="New Username" required>
+                </div>
+                <div class="col">
+                    <input type="password" id="edit-password" class="form-control" placeholder="New Password" required>
+                </div>
+                <div class="col">
+                    <button type="submit" class="btn btn-success btn-block">Edit User</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.7.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="/javascripts/admin.js"></script>
+</body>
+</html>

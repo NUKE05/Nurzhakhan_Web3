@@ -7,46 +7,32 @@ function fetchUsersAndDisplay() {
     fetch('/api/users')
         .then(response => response.json())
         .then(users => {
-            const table = document.getElementById('editable');
-            const tableBody = table.querySelector('tbody') || table.appendChild(document.createElement('tbody'));
-            tableBody.innerHTML = ''; 
-            users.forEach(user => {
-                const row = tableBody.insertRow();
-                const usernameCell = row.insertCell(0);
-                const passwordCell = row.insertCell(1);
-                usernameCell.textContent = user.username;
-                passwordCell.textContent = user.password
-            });
-        })
-        .catch(error => console.error('Error fetching users:', error));
-}
-
-function fetchUsersAndDisplay() {
-    fetch('/api/users')
-        .then(response => response.json())
-        .then(users => {
             const tableBody = document.querySelector('#editable tbody');
             tableBody.innerHTML = '';
             users.forEach(user => {
                 const row = tableBody.insertRow();
                 const usernameCell = row.insertCell(0);
                 const passwordCell = row.insertCell(1);
+                const adminCell = row.insertCell(2);
                 usernameCell.textContent = user.username;
                 passwordCell.textContent = user.password;
+                adminCell.textContent = user.isAdmin;
                 
                 const deleteButton = document.createElement('button');
                 deleteButton.textContent = 'Delete';
+                deleteButton.className = 'btn btn-danger btn-sm';
                 deleteButton.setAttribute('data-username', user.username);
                 deleteButton.addEventListener('click', function() {
                     deleteUser(user.username);
                 });
 
-                const deleteCell = row.insertCell(2);
+                const deleteCell = row.insertCell(3);
                 deleteCell.appendChild(deleteButton);
 
-                const editCell = row.insertCell(3);
+                const editCell = row.insertCell(4);
                 const editButton = document.createElement('button');
                 editButton.textContent = 'Edit';
+                editButton.className = 'btn btn-success btn-sm';
                 editButton.addEventListener('click', () => editUser(user._id, user.username));
                 editCell.appendChild(editButton);
             });
@@ -128,7 +114,7 @@ function editUser(userId, currentUsername) {
         event.preventDefault();
         const newUsername = document.getElementById('edit-username').value.trim();
         const newPassword = document.getElementById('edit-password').value.trim();
-
+        
         if (newPassword && newPassword.length < 8) {
             alert('Password must be at least 8 characters long.');
             return;

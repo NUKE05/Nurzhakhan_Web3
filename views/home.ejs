@@ -1,5 +1,95 @@
-<h1>Home Page</h1>
- 
-    <li><a href="/register">Register</a></li>
-    <li><a href="/login">Login</a></li>
-    <li><a href="/logout">Logout</a></li>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/styles/home.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/">
+            <img src="/img/DALL·E 2024-01-20 03.28.00 - A single logo with a serious tone, featuring a medium level of detail and complexity, using a color palette of blue and gray. The design should be sui.png" width="30" height="30" class="d-inline-block align-top" alt="">
+            Daily
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#hero">Weather</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#hero1">Countries</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#hero2">News</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-primary btn-sm my-1" href="/register">Sign Up for Free</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero-section text-dark text-center d-flex align-items-center justify-content-center my-3 ml-2" id="hero">
+        <div class="container">
+            <h1 class="display-1"><span class="text-info">Daily</span>. Receive useful information every day</h1>
+            <p class="lead my-4">The <span class="text-primary">Daily</span> is a website that will alert you to information that you may find useful throughout the day. The site will contain information regarding weather in various countries, basic information regarding countries and daily news.</p>
+            <div class="my-5">
+                <a href="/login" class="btn btn-info btn-lg me-4">Get Strated</a>
+                <a href="#hero1" class="btn btn-outline-info btn-lg">Try Weather</a>
+            </div>
+        </div>
+    </section>
+    
+    <section class="hero-section">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-lg-6">
+              <h1 class="display-4">Get the infomration about the <span class="text-info">Weather</span> in every country.</h1>
+              <p class="lead">Get valuable weather information for almost every city in the world. Also, in addition to statistics, you can get the location of a given city on the map.</p>
+                <a href="/login" class="btn btn-info btn-lg">Get Strated</a>
+                <a href="#hero1" class="btn btn-outline-info btn-lg">Try Weather</a>
+            </div>
+            <div class="col-lg-6 my-1">
+              <img src="/img/weather_hero_section.jpg" class="img-fluid rounded" alt="Responsive image">
+            </div>
+          </div>
+        </div>
+    </section>
+
+    <div class="hero-section" id="hero1">
+        <div class="container">
+            <h1 class="display-1">COUNTRY INFROMATION</h1>
+            <p class="lead">You can get basic information about more than 250 countries around the world. This information includes country codes, capitals, flags, region, etc.</p>
+                <a href="/login" class="btn btn-info btn-lg me-4">Get Strated</a>
+                <a href="#hero2" class="btn btn-outline-info btn-lg">News</a>
+            <img src="/img/map.png" class="hero-image" alt="Responsive screenshot">
+        </div>
+    </div>
+
+    <section class="hero-section" id="hero2">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-lg-6 my-1">
+                <img src="/img/news_interview.jpg" class="img-fluid rounded" alt="Responsive image">
+            </div>
+            <div class="col-lg-6">
+              <h1 class="display-4"><span class="text-info">News</span> everyday!</h1>
+              <p class="lead">News that is updated daily! You can learn about events that are happening not only in your country, but throughout the world in particular. All you need to do is register and get started!</p>
+              <a href="/login" class="btn btn-outline-info btn-lg me-4">Let's Go!</a>
+          </div>
+        </div>
+    </section>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.7.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
