@@ -1,18 +1,16 @@
-/* Add this to your existing style.css file */
+
 #add-user-form button {
-    background-color: blue; /* Change this to the exact color code you prefer */
+    background-color: blue; 
 }
 
 #edit-user-form button {
-    background-color: green; /* Change this to the exact color code you prefer */
+    background-color: green; 
 }
 
-/* Assuming delete buttons are dynamically created, you can add a class to them in admin.js */
 .delete-btn {
-    background-color: red; /* Change this to the exact color code you prefer */
+    background-color: red;
 }
 
-/* To ensure text color is white for better readability on colored buttons */
 .btn {
     color: white;
 }
