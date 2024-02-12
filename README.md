@@ -20,6 +20,12 @@ Routes:
 Admin username: nurzhakhan
 Admin password: akhammabetov
 
+## Database connection: 
+Link: mongodb+srv://Nurzhakhan:nuke@cluster.tin7ue1.mongodb.net/
+
+
+
+
 
 
 
